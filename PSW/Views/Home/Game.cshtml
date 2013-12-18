@@ -1,16 +1,23 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity
+@{
     ViewBag.Title = "Game";
 }
 
 <h2>Game</h2>
 
-<div class="container">
-    <div id="shape"></div>
-    <input type="text" id="message" />
-    <input type="button" id="sendmessage" value="Send" />
-    <input type="hidden" id="displayname" />
+<div id="chat" class="container">
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <input type="text" id="message" class="form-control" placeholder="message" autofocus />
+            <input type="button" id="sendmessage" value="Send" class="btn btn-info" />
+        </div>
+    </form>
+
+    <input type="hidden" id="displayname" value="@Html.Raw(User.Identity.GetUserName())" />
     <ul id="discussion"></ul>
 </div>
+<div id="shape"></div>
+
 @section scripts {
     <!--Script references. -->
     <!--The jQuery library is required and is referenced by default in _Layout.cshtml. -->
@@ -45,10 +52,6 @@
                 $('#discussion').append('<li><strong>' + htmlEncode(name)
                     + '</strong>: ' + htmlEncode(message) + '</li>');
             };
-            // Get the user name and store it to prepend to messages.
-            $('#displayname').val(prompt('Enter your name:', ''));
-            // Set initial focus to message input box.
-            $('#message').focus();
             // Start the connection.
             $.connection.hub.start().done(function () {
                 $('#sendmessage').click(function () {

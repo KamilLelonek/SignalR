@@ -47,3 +47,11 @@ input[type="checkbox"].input-validation-error {
     border-radius: 50%;
     background-color: #00BFFF;
 }
+
+#discussion {
+    margin: 10px 0;
+}
+
+#chat .form-group {
+    display: block;
+}
