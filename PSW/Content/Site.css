@@ -44,6 +44,10 @@ input[type="checkbox"].input-validation-error {
 #shape {
     width: 100px;
     height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1030;
     border-radius: 50%;
     background-color: #00BFFF;
 }
